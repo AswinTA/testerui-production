@@ -1,0 +1,31 @@
+.a11y-add-domain-btn {
+    margin-top: 5px;
+}
+
+.a11y-url-txtbox {
+    margin-top: 40px;
+}
+
+.a11y-domain-display-table .panel-heading {
+    padding: 0px !important;
+}
+
+.a11y-domain-display-table .panel {
+    margin-bottom: 0px !important;
+}
+
+/* change btn colors */
+
+.btn.btn-success.a11y-mark-button.btn-xs {
+    background-color: rgb(5, 136, 0) !important;
+}
+
+.btn.btn-danger.a11y-unmark-button.btn-xs {
+    background-color: #d4150f !important;
+}
+.a11y-priority-span{
+    float: right;
+}
+.a11y-testcase-p{
+    color: black;
+}
