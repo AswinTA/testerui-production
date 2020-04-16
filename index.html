@@ -29,6 +29,7 @@
             display: block;
             margin-top: 0em;
         }
+
         /* .form:after {
             content: ".";
             display: block;
@@ -56,7 +57,8 @@
                             <input type="text" class="form-control" id="uname" placeholder="Username" required="" />
                         </div>
                         <div>
-                            <input type="password" class="form-control" id="password" placeholder="Password" required="" />
+                            <input type="password" class="form-control" id="password" placeholder="Password"
+                                required="" />
                         </div>
                         <div>
                             <button class="btn btn-default submit" id="loginbtn">Log in</button>
@@ -75,7 +77,8 @@
 
                             <div>
                                 <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
+                                    Terms</p>
                             </div>
                         </div>
                     </form>
@@ -110,7 +113,8 @@
 
                         <div>
                             <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -121,9 +125,9 @@
     <script src="myjs/ipAddress.js"></script>
     <script>
         localStorage.clear();
-        $(document).ready(function() {
+        $(document).ready(function () {
 
-            $("#loginForm").submit(function(e) {
+            $("#loginForm").submit(function (e) {
 
                 e.preventDefault();
 
@@ -138,11 +142,19 @@
                     contentType: "application/json",
                     data: JSON.stringify(loginInfo),
                     dataType: "json",
-                    success: function(response) {
+                    success: function (response) {
                         localStorage.setItem("authtoken", response.token);
+                        var editorExtensionId = "hcdggbonlhclndhoblimjnkakplehlcc";
+
+                        // Make a simple request:
+                        chrome.runtime.sendMessage(editorExtensionId, { msg: "Message from the dashboard",token:response.token },
+                            function (response) {
+                                if (!response.success)
+                                    handleError(url);
+                            });
                         location.href = "home.html";
                     },
-                    error: function(error) {
+                    error: function (error) {
                         $("#badCredential").show();
                     }
                 });
@@ -155,6 +167,26 @@
         //     contentType
         // })
     </script>
+
+
+
+
+
+
+
+    <!-- hotjar -->
+    <!-- Hotjar Tracking Code for My site -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1766167,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+    <!-- Hotjar end -->
 </body>
 
 </html>
