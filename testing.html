@@ -25,8 +25,8 @@
         function checkAccessTokenOnLocalStorage() {
             let accessToken = localStorage.getItem("access_token");
             if (accessToken != null) {
-                clearTimeout(tokenCheck);
                 apiCalls();
+                clearTimeout(tokenCheck);
 
             }
         }
