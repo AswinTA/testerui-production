@@ -22,7 +22,8 @@
         let accessToken = localStorage.getItem("access_token");
         console.log(accessToken)
         if (accessToken != "") {
-            let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
+            // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
+            let url = "localhost:8080/viewAllCompanyParticipants";
             fetch(url, {
                 method: "GET",
                 headers: { 'Authorization': accessToken }
