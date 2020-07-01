@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popup</title>
+</head>
+
+<body>
+
+    <div>
+        <h5>Checking Login Token</h5>
+    </div>
+
+
+
+
+    <script>
+
+
+        let accessToken = localStorage.getItem("access_token");
+        console.log(accessToken)
+        if (accessToken != "") {
+            let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
+            fetch(url, {
+                method: "GET",
+                headers: { 'Authorization': accessToken }
+            }).then(response => console.log(response))
+        }
+    </script>
+</body>
+
+</html>
