@@ -25,23 +25,26 @@
         function checkAccessTokenOnLocalStorage() {
             let accessToken = localStorage.getItem("access_token");
             if (accessToken != null) {
-                clearTimeout(tokenCheck)
+                clearTimeout(tokenCheck);
+                apiCalls();
 
             }
         }
+        function apiCalls() {
 
-        if (accessToken != null) {
-            console.log(accessToken)
-            var bearer = 'Bearer ' + accessToken;
-            // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
-            let url = "http://localhost:8080/viewAllCompanyParticipants";
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    'Authorization': bearer,
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => console.log(response.body))
+            if (accessToken != null) {
+                console.log(accessToken)
+                var bearer = 'Bearer ' + accessToken;
+                // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
+                let url = "http://localhost:8080/viewAllCompanyParticipants";
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        'Authorization': bearer,
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => console.log(response.body))
+            }
         }
     </script>
 </body>
