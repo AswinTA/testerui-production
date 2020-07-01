@@ -19,10 +19,20 @@
     <script>
 
 
-        let accessToken = localStorage.getItem("access_token");
-        console.log(accessToken)
-        var bearer = 'Bearer ' + accessToken;
-        if (accessToken != "") {
+        let tokenCheck = setTimeout(checkAccessTokenOnLocalStorage(), 3000);
+        let accessToken = null;
+
+        function checkAccessTokenOnLocalStorage() {
+            let accessToken = localStorage.getItem("access_token");
+            if (accessToken != null) {
+                clearTimeout(tokenCheck)
+
+            }
+        }
+
+        if (accessToken != null) {
+            console.log(accessToken)
+            var bearer = 'Bearer ' + accessToken;
             // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
             let url = "http://localhost:8080/viewAllCompanyParticipants";
             fetch(url, {
