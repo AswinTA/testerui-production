@@ -18,35 +18,41 @@
 
     <script>
 
+        let access_token = null;
+        let tokenCheck = setTimeout(() => {
+            accessToken = localStorage.getItem("access_token");
+            console.log(accessToken)
+        }, 300)
 
-        let tokenCheck = setTimeout(checkAccessTokenOnLocalStorage(), 300);
-        let accessToken = null;
 
-        function checkAccessTokenOnLocalStorage() {
-            console.log("checking")
-            let accessToken = localStorage.getItem("access_token");
-            if (accessToken != null) {
-                apiCalls();
-                clearTimeout(tokenCheck);
+        // let tokenCheck = setTimeout(checkAccessTokenOnLocalStorage(), 300);
+        // let accessToken = null;
 
-            }
-        }
-        function apiCalls() {
-            console.log("inside api call")
-            if (accessToken != null) {
-                console.log(accessToken)
-                var bearer = 'Bearer ' + accessToken;
-                // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
-                let url = "http://localhost:8080/viewAllCompanyParticipants";
-                fetch(url, {
-                    method: "GET",
-                    headers: {
-                        'Authorization': bearer,
-                        'Content-Type': 'application/json'
-                    }
-                }).then(response => console.log(response.body))
-            }
-        }
+        // function checkAccessTokenOnLocalStorage() {
+        //     console.log("checking")
+        //     let accessToken = localStorage.getItem("access_token");
+        //     if (accessToken != null) {
+        //         apiCalls();
+        //         clearTimeout(tokenCheck);
+
+        //     }
+        // }
+        // function apiCalls() {
+        //     console.log("inside api call")
+        //     if (accessToken != null) {
+        //         console.log(accessToken)
+        //         var bearer = 'Bearer ' + accessToken;
+        //         // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
+        //         let url = "http://localhost:8080/viewAllCompanyParticipants";
+        //         fetch(url, {
+        //             method: "GET",
+        //             headers: {
+        //                 'Authorization': bearer,
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         }).then(response => console.log(response.body))
+        //     }
+        // }
     </script>
 </body>
 
