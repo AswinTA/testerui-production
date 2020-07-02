@@ -32,7 +32,7 @@
                 req.setRequestHeader("Authorization", bearer)
                 req.send();
                 req.onreadystatechange = (e) => {
-                    console.log(req.responseText)
+                    console.log(req.response)
                 }
             }
 
