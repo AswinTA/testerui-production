@@ -27,20 +27,18 @@
                 // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
                 let url = "http://localhost:8080/viewAllCompanyParticipants";
 
-                const req = new XMLHttpRequest();
-                req.open("GET", url);
-                req.setRequestHeader("Authorization", bearer)
-                req.send();
-                req.onreadystatechange = () => {
-                    console.log(this)
-                    if(this.readyState == 4 && this.status == 200){
-                        console.log("success response")
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.responseType = 'json';
+                xhr.onload = function (e) {
+                    if (this.status == 200) {
+                        console.log('response', this.response); // JSON response  
                     }else{
-                        console.log(this.status)
-                        console.log(req.response)
+                        console.log(this)
+                        console.log(this.response)
                     }
-                    console.log(req.response)
-                }
+                };
+                xhr.send();
             }
 
         }
