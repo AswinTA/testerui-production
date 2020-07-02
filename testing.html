@@ -36,10 +36,15 @@
                         'Authorization': bearer,
                         'Content-Type': 'application/json'
                     }
-                }).then(response => response.json())
+                }).then(response =>{
+                  
+                    response.json()
+                    console.log(response.json())
+                })
+                    
                     .then(data => {
                         console.log(data)
-
+                        
                         let resDiv = document.createElement("div")
                         data.forEach(element => {
                             let cdiv = document.createElement("div")
