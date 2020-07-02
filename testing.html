@@ -29,6 +29,7 @@
                 var bearer = 'Bearer ' + access_token;
                 // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
                 let url = "http://localhost:8080/viewAllCompanyParticipants";
+
                 fetch(url, {
                     method: "GET",
                     headers: {
@@ -38,10 +39,25 @@
                 }).then(response => response.json())
                     .then(data => {
                         console.log(data)
+
+                        let resDiv = document.createElement("div")
                         data.forEach(element => {
-                            
-                            document.getElementById("response-data").innerText = element;
+                            let li1 = document.createElement("li")
+                            let cdiv = document.createElement("div")
+                            li.innerText = element.userId;
+                            let li2 = document.createElement("li").innerText = element.emailId;
+                            let li3 = document.createElement("li").innerText = element.companyId;
+                            let li4 = document.createElement("li").innerText = element.role;
+                            let li5 = document.createElement("li").innerText = element.userName;
+                            cdiv.append(li1)
+                            cdiv.append(li2)
+                            cdiv.append(li3)
+                            cdiv.append(li4)
+                            cdiv.append(li5)
+
+                            resDiv.appendChild(cdiv)
                         });
+                        document.getElementById("response-data").innerText = resDiv;
                     })
             }
 
