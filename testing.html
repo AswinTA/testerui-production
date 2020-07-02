@@ -22,28 +22,27 @@
             let access_token = localStorage.getItem("access_token");
             console.log(access_token)
             if (access_token != null) {
-                console.log(access_token)
-                var bearer = 'Bearer ' + access_token;
-                // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
-                let url = "http://localhost:8080/viewAllCompanyParticipants";
-
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', url);
-                xhr.responseType = 'json';
-                xhr.onload = function (e) {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log('response', this.response); // JSON response  
-                    }else{
-                        console.log(this)
-                        console.log(this.response)
+                $.ajax({
+                    type: "GET", //GET, POST, PUT
+                    url: url,  //the url to call
+    // data: yourData,     //Data sent to server
+                    contentType: "application/json",
+                    beforeSend: function (xhr) {   //Include the bearer token in header
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + access_token);
                     }
-                };
-                xhr.send();
+                }).done(function (response) {
+                    //Response ok. process reuslt
+                    console.log(response)
+                }).fail(function (err) {
+                    //Error during request
+                    console.log(err)
+                });
             }
 
         }
 
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 
 </html>
