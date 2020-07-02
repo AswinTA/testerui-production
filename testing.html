@@ -37,6 +37,9 @@
                    response.json()
 
                 }).then(data=>{
+                    if(data == undefined){
+                        console.log(response)
+                    }
                     console.log(data)
                 })
                 .catch(error => {
