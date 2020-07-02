@@ -31,7 +31,14 @@
                 req.open("GET", url);
                 req.setRequestHeader("Authorization", bearer)
                 req.send();
-                req.onreadystatechange = (e) => {
+                req.onreadystatechange = () => {
+                    console.log(this)
+                    if(this.readyState == 4 && this.status == 200){
+                        console.log("success response")
+                    }else{
+                        console.log(this.status)
+                        console.log(req.response)
+                    }
                     console.log(req.response)
                 }
             }
