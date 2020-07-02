@@ -35,7 +35,9 @@
                     }
                 }).then(response => {
                     console.log(response)
-                    response.json();
+                    let stram = response.body.getReader()
+                    console.log(stream)
+                    // response.json();
                     // if (response.status >= 200 && response.status <= 299) {
                     //     return response.json();
                     // } else {
