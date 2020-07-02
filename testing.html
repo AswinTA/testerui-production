@@ -67,8 +67,10 @@
                 }
             }).done(function (response) {
                 //Response ok. process reuslt
+                console.log("refresh response")
                 console.log(response)
             }).fail(function (err) {
+                console.log("refresh error")
                 console.log(err)
             });
         }
