@@ -34,7 +34,13 @@
                         'Content-Type': 'application/json'
                     }
                 }).then(response => {
-                   response.json()
+
+                    if(response.status == 401){
+                        console.log(response)
+                    }else{
+
+                        response.json()
+                    }
 
                 }).then(data=>{
                     if(data == undefined){
