@@ -27,69 +27,17 @@
                 // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
                 let url = "http://localhost:8080/viewAllCompanyParticipants";
 
-                fetch(url, {
-                    method: "GET",
-                    headers: {
-                        'Authorization': bearer,
-                        'Content-Type': 'application/json'
-                    }
-                }).then(response => {
-
-                    response.json()
-                    // if(response.status == 401){
-                    //     console.log(response)
-                    // }else{
-                    // }
-
-                }).then(data=>{
-                    if(data == undefined){
-                   
-                    }
-
-                    console.log(data)
-                })
-                .catch(error => {
-                    console.log(error)
-                    if(error == "Expired Token"){
-                        console.log("access token expired ")
-                    }
-                })
+                const req = new XMLHttpRequest();
+                req.setRequestHeader("Authorization", bearer)
+                req.open("GET", url);
+                req.send();
+                req.onreadystatechange = (e) => {
+                    console.log(req.responseText)
+                }
             }
 
         }
-        // let tokenCheck = setTimeout(() => {
-        //     console.log(accessToken)
-        // }, 300)
-        // tokenCheck();
 
-        // let tokenCheck = setTimeout(checkAccessTokenOnLocalStorage(), 300);
-        // let accessToken = null;
-
-        // function checkAccessTokenOnLocalStorage() {
-        //     console.log("checking")
-        //     let accessToken = localStorage.getItem("access_token");
-        //     if (accessToken != null) {
-        //         apiCalls();
-        //         clearTimeout(tokenCheck);
-
-        //     }
-        // }
-        // function apiCalls() {
-        //     console.log("inside api call")
-        //     if (accessToken != null) {
-        //         console.log(accessToken)
-        //         var bearer = 'Bearer ' + accessToken;
-        //         // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
-        //         let url = "http://localhost:8080/viewAllCompanyParticipants";
-        //         fetch(url, {
-        //             method: "GET",
-        //             headers: {
-        //                 'Authorization': bearer,
-        //                 'Content-Type': 'application/json'
-        //             }
-        //         }).then(response => console.log(response.body))
-        //     }
-        // }
     </script>
 </body>
 
