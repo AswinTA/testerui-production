@@ -21,9 +21,9 @@
             console.log("after window onload");
             let access_token = localStorage.getItem("access_token");
             console.log(access_token)
-            if (accessToken != null) {
-                console.log(accessToken)
-                var bearer = 'Bearer ' + accessToken;
+            if (access_token != null) {
+                console.log(access_token)
+                var bearer = 'Bearer ' + access_token;
                 // let url = "https://heroku-spring-auth.herokuapp.com/viewAllCompanyParticipants";
                 let url = "http://localhost:8080/viewAllCompanyParticipants";
                 fetch(url, {
