@@ -11,13 +11,16 @@
 
     <div>
         <h5>Checking Login Token</h5>
+        <div id="response-data">
+
+        </div>
     </div>
 
 
 
 
     <script>
-        window.onload = ()=>{
+        window.onload = () => {
             console.log("after window onload");
             let access_token = localStorage.getItem("access_token");
             console.log(access_token)
@@ -33,7 +36,10 @@
                         'Content-Type': 'application/json'
                     }
                 }).then(response => response.json())
-                .then(data=> console.log(data))
+                    .then(data => {
+                        console.log(data)
+                        document.getElementById("response-data").innerText = data;
+                    })
             }
 
         }
