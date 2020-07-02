@@ -49,15 +49,11 @@
                             obj.companyId = element.companyId;
                             obj.role = element.role;
                             obj.userName = element.userName;
-
-
-
-
-
-
                             let innerTxt = document.getElementById("response-data").innerText;
                             document.getElementById("response-data").innerText = innerTxt + JSON.stringify(obj)
                         });
+                    }).catch(error=>{
+                        console.log(error)
                     })
             }
 
