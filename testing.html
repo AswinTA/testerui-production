@@ -21,6 +21,7 @@
             console.log("after window onload");
             let access_token = localStorage.getItem("access_token");
             console.log(access_token)
+            let url = "http://localhost:8080/viewAllCompanyParticipants"
             if (access_token != null) {
                 $.ajax({
                     type: "GET", //GET, POST, PUT
