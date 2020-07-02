@@ -63,8 +63,8 @@
                 // data: yourData,     //Data sent to server
                 contentType: "application/json",
                 beforeSend: function (xhr) {   //Include the bearer token in header
-                    xhr.setRequestHeader("Authorization", 'Bearer ' + refresh_token);
-                }
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + refresh_token);
+                    }
             }).done(function (response) {
                 //Response ok. process reuslt
                 console.log("refresh response")
