@@ -43,18 +43,19 @@
                         let resDiv = document.createElement("div")
                         data.forEach(element => {
                             let cdiv = document.createElement("div")
-                            let li1 = document.createElement("li").innerText = element.userId;
-                            let li2 = document.createElement("li").innerText = element.emailId;
-                            let li3 = document.createElement("li").innerText = element.companyId;
-                            let li4 = document.createElement("li").innerText = element.role;
-                            let li5 = document.createElement("li").innerText = element.userName;
-                            cdiv.append(li1)
-                            cdiv.append(li2)
-                            cdiv.append(li3)
-                            cdiv.append(li4)
-                            cdiv.append(li5)
+                            let obj = new Object();
+                            obj.userId = element.userId;
+                            obj.emailId = element.emailId;
+                            obj.companyId = element.companyId;
+                            obj.role = element.role;
+                            obj.userName = element.userName;
 
-                            resDiv.appendChild(cdiv)
+
+
+
+
+
+                            resDiv.innerText = resDiv.innerHTML.concat(JSON.stringify(obj))
                         });
                         document.getElementById("response-data").innerText = resDiv;
                     })
