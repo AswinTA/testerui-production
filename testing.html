@@ -35,27 +35,28 @@
                     }
                 }).then(response => {
                     console.log(response)
-                    if (response.status >= 200 && response.status <= 299) {
-                        return response.json();
-                    } else {
-                        response.json();
-                        throw Error(response.status);
-                    }
+                    response.json();
+                    // if (response.status >= 200 && response.status <= 299) {
+                    //     return response.json();
+                    // } else {
+                    //     response.json();
+                    //     throw Error(response.status);
+                    // }
                 })
                     .then(data => {
                         console.log(data)
-                        let resDiv = document.createElement("div")
-                        data.forEach(element => {
-                            let cdiv = document.createElement("div")
-                            let obj = new Object();
-                            obj.userId = element.userId;
-                            obj.emailId = element.emailId;
-                            obj.companyId = element.companyId;
-                            obj.role = element.role;
-                            obj.userName = element.userName;
-                            let innerTxt = document.getElementById("response-data").innerText;
-                            document.getElementById("response-data").innerText = innerTxt + JSON.stringify(obj)
-                        });
+                        // // let resDiv = document.createElement("div")
+                        // // data.forEach(element => {
+                        // //     let cdiv = document.createElement("div")
+                        // //     let obj = new Object();
+                        // //     obj.userId = element.userId;
+                        // //     obj.emailId = element.emailId;
+                        // //     obj.companyId = element.companyId;
+                        // //     obj.role = element.role;
+                        // //     obj.userName = element.userName;
+                        // //     let innerTxt = document.getElementById("response-data").innerText;
+                        // //     document.getElementById("response-data").innerText = innerTxt + JSON.stringify(obj)
+                        // });
                     }).catch(error => {
                         console.log(error)
                     })
