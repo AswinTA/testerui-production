@@ -28,8 +28,8 @@
                 let url = "http://localhost:8080/viewAllCompanyParticipants";
 
                 const req = new XMLHttpRequest();
-                req.setRequestHeader("Authorization", bearer)
                 req.open("GET", url);
+                req.setRequestHeader("Authorization", bearer)
                 req.send();
                 req.onreadystatechange = (e) => {
                     console.log(req.responseText)
