@@ -38,7 +38,7 @@
                     if (response.status >= 200 && response.status <= 299) {
                         return response.json();
                     } else {
-                        throw Error(response.statusText);
+                        throw Error(response);
                     }
                 })
                     .then(data => {
@@ -56,7 +56,7 @@
                             document.getElementById("response-data").innerText = innerTxt + JSON.stringify(obj)
                         });
                     }).catch(error => {
-                        console.log(error)
+                        console.log(error.json())
                     })
             }
 
