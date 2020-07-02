@@ -53,6 +53,8 @@
 
 
         function refreshAccessToken(refresh_token) {
+
+            console.log("sending req for refresh")
             let refreshUrl = "localhost:8080/auth/refresh";
             console.log(refresh_token);
             $.ajax({
