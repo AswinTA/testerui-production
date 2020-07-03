@@ -82,6 +82,13 @@
             let refreshUrl = "http://localhost:8080/auth/refresh";
             console.log(refresh_token);
 
+            axios.post(refreshUrl,{
+                headers: { "Authorization": 'Bearer ' + refresh_token }
+            }).then(response=>{
+                console.log(response)
+            }).catch(err=>{
+                console.log(err)
+            })
             // $.ajax({
             //     type: "POST", //GET, POST, PUT
             //     url: refreshUrl,  //the url to call
