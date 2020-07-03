@@ -23,30 +23,41 @@
             console.log(access_token)
             let url = "http://localhost:8080/viewAllCompanyParticipants"
             if (access_token != null) {
-                $.ajax({
-                    type: "GET", //GET, POST, PUT
-                    url: url,  //the url to call
-                    // data: yourData,     //Data sent to server
-                    contentType: "application/json",
-                    beforeSend: function (xhr) {   //Include the bearer token in header
-                        xhr.setRequestHeader("Authorization", 'Bearer ' + access_token);
-                    }
-                }).done(function (response) {
-                    //Response ok. process reuslt
-                    console.log(response)
-                }).fail(function (err) {
-                    //Error during request
-                    console.log(err)
-                    if (err.responseJSON.statusText == "Expired Token") {
-                        // check refresh token, if present send req for refreshing access token otherwise redirect to login page
-                        let refresh_token = localStorage.getItem("refresh_token");
-                        if (refresh_token) {
-                            console.log(refresh_token)
-                            refreshAccessToken(refresh_token)
 
-                        }
-                    }
-                });
+
+                axios.get(url,{
+                    headers:{"Authorization": 'Bearer ' + access_token}
+                }).then(response=>{
+                    console.log(response)
+                })
+
+
+
+
+                // $.ajax({
+                //     type: "GET", //GET, POST, PUT
+                //     url: url,  //the url to call
+                //     // data: yourData,     //Data sent to server
+                //     contentType: "application/json",
+                //     beforeSend: function (xhr) {   //Include the bearer token in header
+                //         xhr.setRequestHeader("Authorization", 'Bearer ' + access_token);
+                //     }
+                // }).done(function (response) {
+                //     //Response ok. process reuslt
+                //     console.log(response)
+                // }).fail(function (err) {
+                //     //Error during request
+                //     console.log(err)
+                //     if (err.responseJSON.statusText == "Expired Token") {
+                //         // check refresh token, if present send req for refreshing access token otherwise redirect to login page
+                //         let refresh_token = localStorage.getItem("refresh_token");
+                //         if (refresh_token) {
+                //             console.log(refresh_token)
+                //             refreshAccessToken(refresh_token)
+
+                //         }
+                //     }
+                // });
             }
 
         }
@@ -76,6 +87,7 @@
         }
 
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 
