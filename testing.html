@@ -17,69 +17,64 @@
     </div>
 
     <script>
-         const customEvent  = new Event("store-event");
+        const customEvent = new Event("store-event");
+        let url = "http://localhost:8080/viewAllCompanyParticipants"
         window.onload = () => {
 
             // create a custom event
-           
+
 
 
             console.log("after window onload");
             let access_token = localStorage.getItem("access_token");
             console.log(access_token)
-            let url = "http://localhost:8080/viewAllCompanyParticipants"
+            // let url = "http://localhost:8080/viewAllCompanyParticipants"
             if (access_token != null) {
-                axios.get(url, {
-                    headers: { "Authorization": 'Bearer ' + access_token }
-                }).then(response => {
-                    console.log(response)
-                    if (response.data) {
-                        console.log(response.data)
-                        // storeTokenOnExtension();
-                    }
-                }).catch(err => {
-                    console.log(err);
-                    if (err.response.data.statusText == "Expired Token") {
-                        // try refreshing access token 
-                        console.log("getting refresh token")
-
-                        let refresh_token = localStorage.getItem("refresh_token");
-                        console.log(refresh_token)
-                        refreshAccessToken(refresh_token)
-                    }
-                })
+                resourceCall(url,access_token);
             }
-
         }
 
 
         function refreshAccessToken(refresh_token) {
-
             console.log("sending req for refresh")
             let refreshUrl = "http://localhost:8080/auth/refresh";
-            console.log(refresh_token);
-
             axios.post(refreshUrl, {}, {
                 headers: {
                     "Authorization": 'Bearer ' + refresh_token
                 }
             }).then(response => {
-                // console.log(response)
-                // console.log(response.data)
-
-                localStorage.setItem("access_token",response.data.access_token)
-                localStorage.setItem("refresh_token",response.data.refresh_token);
+                localStorage.setItem("access_token", response.data.access_token)
+                localStorage.setItem("refresh_token", response.data.refresh_token);
                 console.log("new token storead successfully")
                 dispatchEvent(customEvent);
-                // let extensionId = "5e666deb85a15a7d6c545e63835eaa015ae168ca@temporary-addon";
-                // browser.runtime.sendMessage(extensionId, { msg: "store_tokens_on_extension", access_token: response.data.access_token, refresh_token: response.data.refresh_token },
-                //     function (response) {
-                //         console.log(response)
-                //     });
+                resourceCall(url,response.data.access_token);
             }).catch(err => {
                 console.log(err)
             })
 
+        }
+
+
+        function resourceCall(url, access_token) {
+            axios.get(url, {
+                headers: { "Authorization": 'Bearer ' + access_token }
+            }).then(response => {
+                console.log(response)
+                if (response.data) {
+                    console.log(response.data)
+                    // storeTokenOnExtension();
+                }
+            }).catch(err => {
+                console.log(err);
+                if (err.response.data.statusText == "Expired Token") {
+                    // try refreshing access token 
+                    console.log("getting refresh token")
+
+                    let refresh_token = localStorage.getItem("refresh_token");
+                    console.log(refresh_token)
+                    refreshAccessToken(refresh_token)
+                }
+            })
         }
 
     </script>
