@@ -25,15 +25,22 @@
             if (access_token != null) {
 
 
-                axios.get(url,{
-                    headers:{"Authorization": 'Bearer ' + access_token}
-                }).then(response=>{
+                axios.get(url, {
+                    headers: { "Authorization": 'Bearer ' + access_token }
+                }).then(response => {
                     console.log(response)
-                    if(response.data){
+                    if (response.data) {
                         console.log(response.data)
                     }
-                }).catch(err=>{
-                    console.log(err)
+                }).catch(err => {
+                    console.log(err);
+                    if (err.response.data.statusText == "Expired Token") {
+                        // try refreshing access token 
+                        console.log("getting refresh token")
+
+                        let refreshToken = localStorage.getItem("refresh_token");
+                        console.log(refreshToken)
+                    }
                 })
 
 
@@ -79,8 +86,8 @@
                 // data: yourData,     //Data sent to server
                 contentType: "application/json",
                 beforeSend: function (xhr) {   //Include the bearer token in header
-                        xhr.setRequestHeader("Authorization", 'Bearer ' + refresh_token);
-                    }
+                    xhr.setRequestHeader("Authorization", 'Bearer ' + refresh_token);
+                }
             }).done(function (response) {
                 //Response ok. process reuslt
                 console.log("refresh response")
