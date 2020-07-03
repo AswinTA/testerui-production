@@ -40,6 +40,7 @@
 
                         let refreshToken = localStorage.getItem("refresh_token");
                         console.log(refreshToken)
+                        refreshAccessToken(refresh_token)
                     }
                 })
 
@@ -80,22 +81,23 @@
             console.log("sending req for refresh")
             let refreshUrl = "http://localhost:8080/auth/refresh";
             console.log(refresh_token);
-            $.ajax({
-                type: "POST", //GET, POST, PUT
-                url: refreshUrl,  //the url to call
-                // data: yourData,     //Data sent to server
-                contentType: "application/json",
-                beforeSend: function (xhr) {   //Include the bearer token in header
-                    xhr.setRequestHeader("Authorization", 'Bearer ' + refresh_token);
-                }
-            }).done(function (response) {
-                //Response ok. process reuslt
-                console.log("refresh response")
-                console.log(response)
-            }).fail(function (err) {
-                console.log("refresh error")
-                console.log(err)
-            });
+
+            // $.ajax({
+            //     type: "POST", //GET, POST, PUT
+            //     url: refreshUrl,  //the url to call
+            //     // data: yourData,     //Data sent to server
+            //     contentType: "application/json",
+            //     beforeSend: function (xhr) {   //Include the bearer token in header
+            //         xhr.setRequestHeader("Authorization", 'Bearer ' + refresh_token);
+            //     }
+            // }).done(function (response) {
+            //     //Response ok. process reuslt
+            //     console.log("refresh response")
+            //     console.log(response)
+            // }).fail(function (err) {
+            //     console.log("refresh error")
+            //     console.log(err)
+            // });
         }
 
     </script>
