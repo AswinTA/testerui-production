@@ -12,7 +12,19 @@
     <div>
         <h5>Checking Login Token</h5>
         <div id="response-data">
+            <div>
 
+                <label>companyId : </label>
+                <span class="companyId"></span><br>
+                <label>emailId : </label>
+                <span class="emailId"></span><br>
+                <label>role : </label>
+                <span class="role"></span><br>
+                <label>userId : </label>
+                <span class="userId"></span><br>
+                <label>userName : </label>
+                <span class="userName"></span><br>
+            </div>
         </div>
     </div>
 
@@ -30,7 +42,7 @@
             console.log(access_token)
             // let url = "http://localhost:8080/viewAllCompanyParticipants"
             if (access_token != null) {
-                resourceCall(url,access_token);
+                resourceCall(url, access_token);
             }
         }
 
@@ -47,7 +59,7 @@
                 localStorage.setItem("refresh_token", response.data.refresh_token);
                 console.log("new token storead successfully")
                 dispatchEvent(customEvent);
-                resourceCall(url,response.data.access_token);
+                resourceCall(url, response.data.access_token);
             }).catch(err => {
                 console.log(err)
             })
@@ -63,6 +75,24 @@
                 if (response.data) {
                     console.log(response.data)
                     // storeTokenOnExtension();
+                    let res = ``;
+                    for (i in response.data) {
+
+                        console.log(i)
+                        //             res = res.concat(`<div>
+
+                        //     <label>companyId : </label>
+                        //     <span class="companyId">${i.companyId}</span><br>
+                        //     <label>emailId : </label>
+                        //     <span class="emailId"></span><br>
+                        //     <label>role : </label>
+                        //     <span class="role"></span><br>
+                        //     <label>userId : </label>
+                        //     <span class="userId"></span><br>
+                        //     <label>userName : </label>
+                        //     <span class="userName"></span><br>
+                        // </div>`)
+                    }
                 }
             }).catch(err => {
                 console.log(err);
