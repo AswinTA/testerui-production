@@ -12,19 +12,7 @@
     <div>
         <h5>Checking Login Token</h5>
         <div id="response-data">
-            <div>
-
-                <label>companyId : </label>
-                <span class="companyId"></span><br>
-                <label>emailId : </label>
-                <span class="emailId"></span><br>
-                <label>role : </label>
-                <span class="role"></span><br>
-                <label>userId : </label>
-                <span class="userId"></span><br>
-                <label>userName : </label>
-                <span class="userName"></span><br>
-            </div>
+          
         </div>
     </div>
 
@@ -79,20 +67,21 @@
                     for (i of response.data) {
 
                         console.log(i)
-                        //             res = res.concat(`<div>
+                                    res = res.concat(`<div>
 
-                        //     <label>companyId : </label>
-                        //     <span class="companyId">${i.companyId}</span><br>
-                        //     <label>emailId : </label>
-                        //     <span class="emailId"></span><br>
-                        //     <label>role : </label>
-                        //     <span class="role"></span><br>
-                        //     <label>userId : </label>
-                        //     <span class="userId"></span><br>
-                        //     <label>userName : </label>
-                        //     <span class="userName"></span><br>
-                        // </div>`)
+                            <label>companyId : </label>
+                            <span class="companyId">${i.companyId}</span><br>
+                            <label>emailId : </label>
+                            <span class="emailId">${i.emailId}</span><br>
+                            <label>role : </label>
+                            <span class="role">${i.role}</span><br>
+                            <label>userId : </label>
+                            <span class="userId">${i.userId}</span><br>
+                            <label>userName : </label>
+                            <span class="userName">${i.userName}</span><br>
+                        </div>`)
                     }
+                    document.getElementById("response-data").innerHTML = res;
                 }
             }).catch(err => {
                 console.log(err);
