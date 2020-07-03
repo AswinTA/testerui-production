@@ -67,7 +67,7 @@
                     for (i of response.data) {
 
                         console.log(i)
-                                    res = res.concat(`<div>
+                                    res = res.concat(`<hr> <div>
 
                             <label>companyId : </label>
                             <span class="companyId">${i.companyId}</span><br>
@@ -79,7 +79,7 @@
                             <span class="userId">${i.userId}</span><br>
                             <label>userName : </label>
                             <span class="userName">${i.userName}</span><br>
-                        </div>`)
+                        </div> <hr>`)
                     }
                     document.getElementById("response-data").innerHTML = res;
                 }
