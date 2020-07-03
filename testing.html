@@ -18,6 +18,11 @@
 
     <script>
         window.onload = () => {
+
+            // create a custom event
+            const customEvent  = new Event("store-event")
+
+
             console.log("after window onload");
             let access_token = localStorage.getItem("access_token");
             console.log(access_token)
@@ -64,6 +69,7 @@
                 localStorage.setItem("access_token",response.data.access_token)
                 localStorage.setItem("refresh_token",response.data.refresh_token);
                 console.log("new token storead successfully")
+                dispatchEvent(customEvent);
                 // let extensionId = "5e666deb85a15a7d6c545e63835eaa015ae168ca@temporary-addon";
                 // browser.runtime.sendMessage(extensionId, { msg: "store_tokens_on_extension", access_token: response.data.access_token, refresh_token: response.data.refresh_token },
                 //     function (response) {
