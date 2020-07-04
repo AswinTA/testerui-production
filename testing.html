@@ -110,6 +110,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         let tokenInfo = parseJwt(localStorage.getItem("access_token"));
+        console.log(tokenInfo)
         var socket = io("http://localhost:3000");
         socket.on('message', function (data) { document.write(data) });
         socket.emit("testmsg", "This is a test Meessage");
