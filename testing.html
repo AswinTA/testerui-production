@@ -46,10 +46,13 @@
     <script>
 
 
-        window.onerror = function (err) {
-            console.log("new error from window")
-            console.log(err)
-        }
+        window.onerror = function (message, source, lineno, colno, error) { 
+            console.log(message);
+            console.log(source);
+            console.log(lineno);
+            console.log(colno);
+            console.log(error);
+        };
         // console.everything = [];
         // if (console.everything === undefined || console.everything) {
 
