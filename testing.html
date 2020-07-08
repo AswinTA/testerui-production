@@ -46,12 +46,11 @@
     <script>
 
 
-        window.onerror = function (message, source, lineno, colno, error) { 
-            console.log(message);
-            console.log(source);
-            console.log(lineno);
-            console.log(colno);
-            console.log(error);
+        var error = console.error;
+
+        console.error = function () {
+            //log arguments to server
+            return error.apply(console, arguments);
         };
         // console.everything = [];
         // if (console.everything === undefined || console.everything) {
@@ -78,20 +77,20 @@
         //     }
         // }
 
-        var log = document.querySelector('#debugDiv');
+        // var log = document.querySelector('#debugDiv');
 
-        ['log', 'warn', 'error'].forEach(function (verb) {
-            console[verb] = (function (method, verb, log) {
-                return function (text) {
-                    method(text);
-                    // handle distinguishing between methods any way you'd like
-                    var msg = document.createElement('code');
-                    msg.classList.add(verb);
-                    msg.textContent = verb + ': ' + text;
-                    log.appendChild(msg);
-                };
-            })(console[verb].bind(console), verb, log);
-        });
+        // ['log', 'warn', 'error'].forEach(function (verb) {
+        //     console[verb] = (function (method, verb, log) {
+        //         return function (text) {
+        //             method(text);
+        //             // handle distinguishing between methods any way you'd like
+        //             var msg = document.createElement('code');
+        //             msg.classList.add(verb);
+        //             msg.textContent = verb + ': ' + text;
+        //             log.appendChild(msg);
+        //         };
+        //     })(console[verb].bind(console), verb, log);
+        // });
 
     </script>
 
