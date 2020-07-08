@@ -167,6 +167,11 @@
                 console.defaultDebug.apply(console, arguments);
             }
         }
+        window.onerror = function myErrorHandler(err, url, line) {
+            //Do some  stuff
+            console.log(err)
+            return false; // so you still log errors into console
+        }
     </script>
 </body>
 
