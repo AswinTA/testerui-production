@@ -69,21 +69,19 @@
         //     }
         // }
 
-        console.defaultError = console.error.bind(console);
-        console.errors = [];
-        console.error = function () {
-            // default &  console.error()
-            console.defaultError.apply(console, arguments);
-            // new & array data
-            console.errors.push(Array.from(arguments));
-        }
+        if (typeof console != "undefined")
+            if (typeof console.log != 'undefined')
+                console.olog = console.log;
+            else
+                console.olog = function () { };
 
-        window.onerror = function myErrorHandler(err, url, line) {
-            //Do some  stuff
-            console.log("on window error")
-            console.log(err)
-            return false; // so you still log errors into console
-        }
+        console.log = function (message) {
+            console.olog(message);
+            $('#debugDiv').append('<p>' + message + '</p>');
+        };
+        console.error = console.debug = console.info = console.log
+
+
     </script>
 
 
