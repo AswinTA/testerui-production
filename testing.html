@@ -34,7 +34,12 @@
 
             <hr>
             <hr>
-            <div class="output"></div>
+            <div id="debugDiv">
+                sdf
+            </div>
+        
+        
+          
         </div>
     </div>
 
@@ -137,14 +142,12 @@
         socket.on('message', function (data) { document.write(data) });
         socket.emit("testmsg", { userId: tokenInfo.sub });
     </script>
-     <script language="javascript">
-        var realConsoleLog = console.log;
-        console.log = function () {
-            var message = [].join.call(arguments, " ");
-            $(".output").text(message);
-            realConsoleLog.apply(console, arguments);
+     <script>
+        console.log = function (message) {
+            // console.log(message);
+           document.getElementById("debugDiv").append('<p>' + message + '</p>');
         };
-        console.log("hello", "my", "name", "is", "");
+        window.onerror = console.log;
     </script>
 </body>
 
