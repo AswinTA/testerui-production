@@ -169,7 +169,8 @@
         }
         window.onerror = function myErrorHandler(err, url, line) {
             //Do some  stuff
-            console.log(err)
+            console.defaultLog("on window error")
+            console.defaultLog(err)
             return false; // so you still log errors into console
         }
     </script>
