@@ -16,21 +16,25 @@
         </div>
         <div id="ta-report-bug" style="text-align: center;">
             <label>Url : </label>
-            <input type="text" name="url"/>
-            <br/>
+            <input type="text" id="url" />
+            <br />
             <label>Environement Details : </label>
             <textarea id="environmentDetails"></textarea>
-            <br/>
+            <br />
             <label>Screen Res</label>
-            <input type="text" name="screen-res"/>
-            <br/>
+            <input type="text" id="screen-res" />
+            <br />
             <label>Window Size</label>
-            <input type="text" name="window-size"/>
-            <br/>
+            <input type="text" id="window-size" />
+            <br />
             <label>Content- size</label>
-            <input type="text" name="content-size"/>
-            <br/>
-            <button type="button" name="recreation" >Recreate</button>
+            <input type="text" id="content-size" />
+            <br />
+            <button type="button" id="recreation">Recreate</button>
+
+            <hr>
+            <hr>
+            <div class="output"></div>
         </div>
     </div>
 
@@ -131,7 +135,16 @@
         console.log(tokenInfo.sub)
         var socket = io("http://localhost:3000");
         socket.on('message', function (data) { document.write(data) });
-        socket.emit("testmsg", {userId : tokenInfo.sub});
+        socket.emit("testmsg", { userId: tokenInfo.sub });
+    </script>
+     <script language="javascript">
+        var realConsoleLog = console.log;
+        console.log = function () {
+            var message = [].join.call(arguments, " ");
+            $(".output").text(message);
+            realConsoleLog.apply(console, arguments);
+        };
+        console.log("hello", "my", "name", "is", "");
     </script>
 </body>
 
