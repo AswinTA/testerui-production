@@ -44,6 +44,59 @@
     </div>
 
     <script>
+        // console.everything = [];
+        // if (console.everything === undefined || console.everything) {
+
+        //     console.defaultLog = console.log.bind(console);
+        //     console.log = function () {
+        //         console.everything.push({ "type": "log", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+        //         console.defaultLog.apply(console, arguments);
+        //     }
+        //     console.defaultError = console.error.bind(console);
+        //     console.error = function () {
+        //         console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+        //         console.defaultError.apply(console, arguments);
+        //     }
+        //     console.defaultWarn = console.warn.bind(console);
+        //     console.warn = function () {
+        //         console.everything.push({ "type": "warn", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+        //         console.defaultWarn.apply(console, arguments);
+        //     }
+        //     console.defaultDebug = console.debug.bind(console);
+        //     console.debug = function () {
+        //         console.everything.push({ "type": "debug", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+        //         console.defaultDebug.apply(console, arguments);
+        //     }
+        // }
+
+        console.defaultError = console.error.bind(console);
+        console.errors = [];
+        console.error = function () {
+            // default &  console.error()
+            console.defaultError.apply(console, arguments);
+            // new & array data
+            console.errors.push(Array.from(arguments));
+        }
+
+        window.onerror = function myErrorHandler(err, url, line) {
+            //Do some  stuff
+            console.log("on window error")
+            console.log(err)
+            return false; // so you still log errors into console
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
         const customEvent = new Event("store-event");
         let url = "http://localhost:8080/viewAllCompanyParticipants"
         window.onload = () => {
@@ -142,48 +195,7 @@
         socket.on('message', function (data) { document.write(data) });
         socket.emit("testmsg", { userId: tokenInfo.sub });
     </script>
-    <script>
-        // console.everything = [];
-        // if (console.everything === undefined || console.everything) {
 
-        //     console.defaultLog = console.log.bind(console);
-        //     console.log = function () {
-        //         console.everything.push({ "type": "log", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultLog.apply(console, arguments);
-        //     }
-        //     console.defaultError = console.error.bind(console);
-        //     console.error = function () {
-        //         console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultError.apply(console, arguments);
-        //     }
-        //     console.defaultWarn = console.warn.bind(console);
-        //     console.warn = function () {
-        //         console.everything.push({ "type": "warn", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultWarn.apply(console, arguments);
-        //     }
-        //     console.defaultDebug = console.debug.bind(console);
-        //     console.debug = function () {
-        //         console.everything.push({ "type": "debug", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultDebug.apply(console, arguments);
-        //     }
-        // }
-
-        console.defaultError = console.error.bind(console);
-        console.errors = [];
-        console.error = function () {
-            // default &  console.error()
-            console.defaultError.apply(console, arguments);
-            // new & array data
-            console.errors.push(Array.from(arguments));
-        }
-
-        window.onerror = function myErrorHandler(err, url, line) {
-            //Do some  stuff
-            console.log("on window error")
-            console.log(err)
-            return false; // so you still log errors into console
-        }
-    </script>
 </body>
 
 </html>
