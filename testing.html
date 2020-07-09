@@ -27,6 +27,14 @@
                 console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
                 console.defaultError.apply(console, arguments);
             }
+
+            console.defaultException = console.exception.bind(console);
+            console.exception = function () {
+                console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+                console.defaultException.apply(console, arguments);
+            }
+            
+
             console.defaultWarn = console.warn.bind(console);
             console.warn = function () {
                 console.everything.push({ "type": "warn", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
