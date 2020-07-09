@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>popup</title>
+    <script>
+        window.onerror = function (message, url, lineNumber) {
+            //save error and send to server for example.
+
+            console.log(message)
+            console.log(url)
+            console.log(lineNumber)
+            return true;
+        };
+
+    </script>
 </head>
 
 <body>
@@ -50,6 +61,7 @@
 
         console.error = function () {
             //log arguments to server
+            console.log(arguments)
             return error.apply(console, arguments);
         };
         // console.everything = [];
