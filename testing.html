@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>popup</title>
     <script>
-        window.onerror = function (message, url, lineNumber) {
-            //save error and send to server for example.
+        // window.onerror = function (message, url, lineNumber) {
+        //     //save error and send to server for example.
 
-            console.log(message)
-            console.log(url)
-            console.log(lineNumber)
-            return true;
-        };
+        //     console.log(message)
+        //     console.log(url)
+        //     console.log(lineNumber)
+        //     return true;
+        // };
         window.addEventListener('error', function (e) {
             //It Will handle JS errors 
             console.log(e)
