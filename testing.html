@@ -42,12 +42,12 @@
         window.addEventListener('error', function (e) {
             //It Will handle JS errors 
             console.log("insidee error listener")
-            console.error(e.message,e)
+            console.error(e.message)
         })
         window.addEventListener('unhandledrejection', function (e) {
             console.log("inside unhandled listener")
             console.log("Error occurred: " + e.reason.message);
-            console.error(e.reason.message,e)
+            console.error(e.reason.message)
         })
 
     </script>
