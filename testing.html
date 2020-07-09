@@ -207,6 +207,43 @@
         socket.emit("testmsg", { userId: tokenInfo.sub });
     </script>
 
+    <script>
+        // generating errors
+
+        // syntax
+        abc
+        console.sdfsdfsdf
+        // runtime
+        window.printme();
+
+        // eval error
+        throw new EvalError('Hello', 'someFile.js', 10);
+
+        // internal error
+        function loop(x) {
+            if (x >= 10) // "x >= 10" is the exit condition
+                return;
+            // do stuff
+            loop(x + 1); // the recursive call
+        }
+        loop(0);
+
+        // range error
+        throw new RangeError("The argument must be between -500 and 500.")
+
+        // reference error
+        throw new ReferenceError('Hello', 'someFile.js', 10);
+
+        // syntax error
+        throw new SyntaxError('Hello', 'someFile.js', 10);
+
+        // type error
+        throw new TypeError('Hello', "someFile.js", 10) 
+
+        // URI error
+        throw new URIError('Hello', 'someFile.js', 10) 
+    </script>
+
 </body>
 
 </html>
