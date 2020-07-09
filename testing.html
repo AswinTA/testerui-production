@@ -57,7 +57,10 @@
 
         </div>
     </div>
+    <script>
+        try {
 
+    </script>
     <script>
 
 
@@ -219,7 +222,12 @@
         socket.on('message', function (data) { document.write(data) });
         socket.emit("testmsg", { userId: tokenInfo.sub });
     </script>
-
+    <script>
+        } catch (err) {
+            console.log("inside catch")
+            console.log(err)
+        }
+    </script>
 </body>
 
 </html>
