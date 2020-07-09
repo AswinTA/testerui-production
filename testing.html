@@ -42,12 +42,14 @@
         window.addEventListener('error', function (e) {
             //It Will handle JS errors 
             console.log("insidee error listener")
-            console.error(e.error.stack)
+            // console.error(e.error.stack)
+            console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(e.error.stack) });
         })
         window.addEventListener('unhandledrejection', function (e) {
             console.log("inside unhandled listener")
-            console.log("Error occurred: " + e.reason.message);
-            console.error("(in promise) "+e.reason.stack)
+            // console.log("Error occurred: " + e.reason.message);
+            // console.error("(in promise) "+e.reason.stack)
+            console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(e.reason.stack) });
         })
 
     </script>
