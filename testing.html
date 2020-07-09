@@ -14,14 +14,31 @@
         //     console.log(lineNumber)
         //     return true;
         // };
-        console.defaultError = console.error.bind(console);
-        console.errors = [];
-        console.error = function () {
-            // default &  console.error()
-            console.defaultError.apply(console, arguments);
-            // new & array data
-            console.errors.push(Array.from(arguments));
+        if (console.everything === undefined) {
+            console.everything = [];
+
+            console.defaultLog = console.log.bind(console);
+            console.log = function () {
+                console.everything.push({ "type": "log", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+                console.defaultLog.apply(console, arguments);
+            }
+            console.defaultError = console.error.bind(console);
+            console.error = function () {
+                console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+                console.defaultError.apply(console, arguments);
+            }
+            console.defaultWarn = console.warn.bind(console);
+            console.warn = function () {
+                console.everything.push({ "type": "warn", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+                console.defaultWarn.apply(console, arguments);
+            }
+            console.defaultDebug = console.debug.bind(console);
+            console.debug = function () {
+                console.everything.push({ "type": "debug", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
+                console.defaultDebug.apply(console, arguments);
+            }
         }
+
         window.addEventListener('error', function (e) {
             //It Will handle JS errors 
             console.log(e)
@@ -68,69 +85,6 @@
 
         </div>
     </div>
-
-    <script>
-
-
-        //     var error = console.error;
-
-        //     console.error = function () {
-        //         //log arguments to server
-        //         console.log(arguments)
-        //         return error.apply(console, arguments);
-        //     };
-        // // console.everything = [];
-        // if (console.everything === undefined || console.everything) {
-
-        //     console.defaultLog = console.log.bind(console);
-        //     console.log = function () {
-        //         console.everything.push({ "type": "log", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultLog.apply(console, arguments);
-        //     }
-        //     console.defaultError = console.error.bind(console);
-        //     console.error = function () {
-        //         console.everything.push({ "type": "error", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultError.apply(console, arguments);
-        //     }
-        //     console.defaultWarn = console.warn.bind(console);
-        //     console.warn = function () {
-        //         console.everything.push({ "type": "warn", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultWarn.apply(console, arguments);
-        //     }
-        //     console.defaultDebug = console.debug.bind(console);
-        //     console.debug = function () {
-        //         console.everything.push({ "type": "debug", "datetime": Date().toLocaleString(), "value": Array.from(arguments) });
-        //         console.defaultDebug.apply(console, arguments);
-        //     }
-        // }
-
-        // var log = document.querySelector('#debugDiv');
-
-        // ['log', 'warn', 'error'].forEach(function (verb) {
-        //     console[verb] = (function (method, verb, log) {
-        //         return function (text) {
-        //             method(text);
-        //             // handle distinguishing between methods any way you'd like
-        //             var msg = document.createElement('code');
-        //             msg.classList.add(verb);
-        //             msg.textContent = verb + ': ' + text;
-        //             log.appendChild(msg);
-        //         };
-        //     })(console[verb].bind(console), verb, log);
-        // });
-
-    </script>
-
-
-
-
-
-
-
-
-
-
-
     <script>
         const customEvent = new Event("store-event");
         let url = "http://localhost:8080/viewAllCompanyParticipants"
