@@ -55,11 +55,11 @@
         console.debugOrg = console.debug
         console.all = [];
 
-        console.log = () => { return console.track('log', arguments) }
-        console.info = () => { return console.track('info', arguments) }
-        console.warn = () => { return console.track('warn', arguments) }
-        console.error = () => { return console.track('error', arguments) }
-        console.debug = () => { return console.track('debug', arguments) }
+        console.log = function () { return console.track('log', arguments) }
+        console.info = function () { return console.track('info', arguments) }
+        console.warn = function () { return console.track('warn', arguments) }
+        console.error = function () { return console.track('error', arguments) }
+        console.debug = function () { return console.track('debug', arguments) }
 
         console.track = (type, args) => {
             console.save(type, args)
