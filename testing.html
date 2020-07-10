@@ -5,6 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>popup</title>
+
+</head>
+
+<body>
+
+    <div>
+        <h5>Checking Login Token</h5>
+        <div id="response-data">
+
+        </div>
+        <div id="ta-report-bug" style="text-align: center;">
+            <label>Url : </label>
+            <input type="text" id="url" />
+            <br />
+            <label>Environement Details : </label>
+            <textarea id="environmentDetails"></textarea>
+            <br />
+            <label>Screen Res</label>
+            <input type="text" id="screen-res" />
+            <br />
+            <label>Window Size</label>
+            <input type="text" id="window-size" />
+            <br />
+            <label>Content- size</label>
+            <input type="text" id="content-size" />
+            <br />
+            <button type="button" id="recreation">Recreate</button>
+
+            <hr>
+            <hr>
+            <div id="debugDiv">
+                sdf
+            </div>
+
+
+
+        </div>
+    </div>
     <script>
 
         if (typeof console.all != "undefined") {
@@ -71,48 +109,7 @@
         window.addEventListener("unhandledrejection", (e) => {
             console.all.push({ type: "error", timestamp: new Date().toUTCString(), arguments: e.reason.stack })
         })
-
-
-
     </script>
-</head>
-
-<body>
-
-    <div>
-        <h5>Checking Login Token</h5>
-        <div id="response-data">
-
-        </div>
-        <div id="ta-report-bug" style="text-align: center;">
-            <label>Url : </label>
-            <input type="text" id="url" />
-            <br />
-            <label>Environement Details : </label>
-            <textarea id="environmentDetails"></textarea>
-            <br />
-            <label>Screen Res</label>
-            <input type="text" id="screen-res" />
-            <br />
-            <label>Window Size</label>
-            <input type="text" id="window-size" />
-            <br />
-            <label>Content- size</label>
-            <input type="text" id="content-size" />
-            <br />
-            <button type="button" id="recreation">Recreate</button>
-
-            <hr>
-            <hr>
-            <div id="debugDiv">
-                sdf
-            </div>
-
-
-
-        </div>
-    </div>
-
     <script>
         const customEvent = new Event("store-event");
         let url = "http://localhost:8080/viewAllCompanyParticipants"
