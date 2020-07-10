@@ -133,8 +133,10 @@
         }
 
         window.addEventListener("error", (e) => {
-
             console.all.push({ type: 'error', timestamp: new Date().toUTCString(), arguments: e.error.stack })
+        })
+        window.addEventListener("unhandledrejection", (e) => {
+            console.all.push({ type: 'error', timestamp: new Date().toUTCString(), arguments: e.reason.stack })
         })
     </script>
 
