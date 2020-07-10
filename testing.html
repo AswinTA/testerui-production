@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>popup</title>
+    <script>
+        if(void 0!==console.all)throw new Error("already tracking console.. instance already exist.");console.logOrg=console.log,console.infoOrg=console.info,console.warnOrg=console.warn,console.errorOrg=console.error,console.debugOrg=console.debug,console.all=[],console.log=(()=>console.track("log",arguments)),console.info=(()=>console.track("info",arguments)),console.warn=(()=>console.track("warn",arguments)),console.error=(()=>console.track("error",arguments)),console.debug=(()=>console.track("debug",arguments)),console.track=((o,e)=>{console.save(o,e)}),console.save=((o,e)=>{var r=(new Date).toUTCString();if(o||(o="log"),e&&0!==e.length){switch(o){case"log":console.logOrg.apply(console,e);break;case"info":console.infoOrg.apply(console,e);break;case"warn":console.warnOrg.apply(console,e);break;case"error":console.errorOrg.apply(console,e);break;case"debug":console.debugOrg.apply(console,e)}var n=!1;try{throw Error("")}catch(o){var s=o.stack.split("\\n");n=[];for(var l=0;l<s.length;l++)s[l].indexOf("console-history.js")>-1||s[l].indexOf("console-history.min.js")>-1||"Error"===s[l]||n.push(s[l].trim())}console.all.push({type:o,timestamp:r,arguments:e,stack:n})}}),window.addEventListener("error",o=>{console.all.push({type:"error",timestamp:(new Date).toUTCString(),arguments:o.error.stack})}),window.addEventListener("unhandledrejection",o=>{console.all.push({type:"error",timestamp:(new Date).toUTCString(),arguments:o.reason.stack})});
+    </script>
 </head>
 
 <body>
