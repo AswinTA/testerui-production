@@ -91,7 +91,24 @@
 
             // Act normal, and just pass all original arguments to
             // the origial console function :)
-            console[type+'Org'].apply(console, args)
+            // console[type + 'Org'].apply(console, args)
+            switch (type) {
+                case 'log':
+                    console.logOrg.apply(console, args)
+                    break;
+                case 'info':
+                    console.infoOrg.apply(console, args)
+                    break;
+                case 'warn':
+                    console.warnOrg.apply(console, args)
+                    break;
+                case 'error':
+                    console.errorOrg.apply(console, args)
+                    break;
+                case 'debug':
+                    console.debugOrg.apply(console, args)
+                    break;
+            }
 
             // Get stack trace information. By throwing an error, we get access to
             // a stack trace. We then go up in the trace tree and filter out
