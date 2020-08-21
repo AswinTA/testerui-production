@@ -15,6 +15,24 @@
         .border {
             border: solid 1px black;
         }
+
+        #tool-panel {
+            background-color: rgb(58, 56, 56);
+            width: 1000px;
+            height: 50px;
+        }
+
+        .img-tool {
+            padding-left: 20px;
+            margin-top: 10px;
+            /* width: 30px; */
+            height: 30px;
+        }
+    </style>
+    <style>
+        canvas {
+            border: solid 1px black;
+        }
     </style>
 </head>
 
@@ -93,13 +111,26 @@
 
                 <div>
                     <h5>ScreenShot</h5>
-                    <img id="bugScreenshot" src=""/>
+                    <img id="bugScreenshot" src="" />
+                </div>
+
+                <div id="screenshot-annot">
+                    <div id="tool-panel">
+                        <img id="rect" class="img-tool" src="./icons/rect.png" />
+                        <img id="draw" class="img-tool" src="./icons/draw.png" />
+                        <img id="text" class="img-tool" src="./icons/text.png" />
+                        <img id="clear-canvas" class="img-tool" src="./icons/clear.png" />
+                        <img id="save-canvas" class="img-tool" src="./icons/save.png" />
+                    </div>
+                    <canvas id="ta-canvas" width="1000" height="800"></canvas>
+
                 </div>
             </div>
         </div>
         <div id="debugDiv">
             sdf
         </div>
+
     </div>
     <script>
         const customEvent = new Event("store-event");
@@ -255,6 +286,8 @@
 
     </script>
 
+    <script src="fabric.js"></script>
+    <script src="index.js"></script>
 </body>
 
 
