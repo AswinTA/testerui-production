@@ -29,87 +29,67 @@
                         </div>
                     </div>
                 </div>
+                <h6>Environement Details: </h6>
                 <div class="row">
                     <div class="col m10">
-                        Environement Details :
+                        Browser Name :
                         <div class="input-field inline len">
-                            <textarea class="materialize-textarea" id="environmentDetails"></textarea>
+                            <input type="text" id="browser-name" />
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
+                    <div class="col m10">
+                        Browser Version :
+                        <div class="input-field inline len">
+                            <input type="text" id="browser-version" />
+                        </div>
+                    </div>
+                    <div class="col m10">
+                        OS Name :
+                        <div class="input-field inline len">
+                            <input type="text" id="os-name" />
+                        </div>
+                    </div>
+                    <div class="col m10">
+                        OS Version :
+                        <div class="input-field inline len">
+                            <input type="text" id="os-version" />
+                        </div>
+                    </div>
+                    <div class="col m10">
+                        OS Archetecture :
+                        <div class="input-field inline len">
+                            <input type="text" id="os-arch" />
+                        </div>
+                    </div>
                     <div class="col m10">
                         Screen Resolution :
                         <div class="input-field inline len">
                             <input type="text" id="screen-res" />
-
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col m10">
-                        Window Size
+                        Window Resolution :
                         <div class="input-field inline len">
                             <input type="text" id="window-size" />
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col m10">
-                        Content- size
+                        Content Size :
                         <div class="input-field inline len">
                             <input type="text" id="content-size" />
-
                         </div>
                     </div>
+
                 </div>
-                <div class="row">
-                    <div class="col m10">
 
-                        <div class="input-field inline len">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col m10">
-
-                        <div class="input-field inline len">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col m10">
-
-                        <div class="input-field inline len">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col m10">
-
-                        <div class="input-field inline len">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col m10">
-
-                        <div class="input-field inline len">
-
-                        </div>
-                    </div>
-                </div>
+            
+        
                 <button type="button" id="recreation">Recreate</button>
             </div>
         </div>
-            <div id="debugDiv">
-                sdf
-            </div>
+        <div id="debugDiv">
+            sdf
+        </div>
     </div>
     <script>
         const customEvent = new Event("store-event");
