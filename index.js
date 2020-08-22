@@ -1,5 +1,27 @@
-let image = document.createElement("img");
-image.src = document.getElementById("bugScreenshot").src;
+console.log("inside index.js")
+var image = document.createElement("img");
+let stateCheck = setInterval(() => {
+    // if (document.getElementById("bugScreenshot").src == "") {
+    if (document.getElementById("bugScreenshot").getAttribute('src') != "") {
+        console.log("------IMG TEST----------")
+        console.log(document.getElementById("bugScreenshot"));
+        // image.src = document.getElementById("bugScreenshot").src;
+        // setImage(image);
+        setBackground(document.getElementById("bugScreenshot").src, canvas);
+        clearInterval(stateCheck);
+
+    }
+}, 100)
+
+
+// function setImage(image) {
+//     image.onload = function () {
+//         var f_img = new fabric.Image(image);
+//         canvas.setBackgroundImage(f_img);
+//         canvas.renderAll();
+//     };
+// }
+
 let canvasWidth = document.getElementById("ta-canvas").offsetWidth;
 let canvasHeight = document.getElementById("ta-canvas").offsetHeight;
 
@@ -25,10 +47,20 @@ const initCanvas = (id) => {
 }
 
 const canvas = initCanvas("ta-canvas");
-setBackground(image.src, canvas)
-// set canvas background
+// setBackground(image.src, canvas)
+// // set canvas background
 function setBackground(url, canvas) {
     fabric.Image.fromURL(url, (img) => {
+        img.set({
+            scaleX: canvasWidth / img.width,
+            scaleY: canvasHeight / img.height,
+
+            // top: canvas.top,
+            // left: canvas.left,
+            // originX: 'left', originY: 'top'
+        });
+
+
         canvas.backgroundImage = img;
         canvas.renderAll();
     })
@@ -41,12 +73,27 @@ function toggleMode(mode) {
             canvas.isDrawingMode = false;
         } else {
             currentMode = modes.draw;
+            canvas.isDrawingMode = true;
+            canvas.freeDrawingBrush.color = 'red';
+            canvas.freeDrawingBrush.width = 5;
+            canvas.renderAll();
         }
     } else if (mode == modes.rect) {
         if (currentMode === modes.rect) {
+            canvas.isDrawingMode = false;
             currentMode = '';
         } else {
             currentMode = modes.rect;
+            canvas.isDrawingMode = false;
+
+        }
+    } else if (mode == modes.type) {
+        if (currentMode == modes.type) {
+            currentMode = '';
+            canvas.isDrawingMode = false;
+        } else {
+            currentMode = modes.type;
+            canvas.isDrawingMode = false
         }
     }
     console.log(mode)
@@ -69,6 +116,8 @@ function initCanvasEvents(canvas) {
             canvas.requestRenderAll();
         } else if (mousePressed && currentMode == modes.draw) {
             canvas.isDrawingMode = true;
+            canvas.freeDrawingBrush.color = 'red';
+            canvas.freeDrawingBrush.width = 5;
             canvas.setCursor("crosshair");
             canvas.requestRenderAll();
             // canvas.renderAll();
@@ -96,10 +145,14 @@ function initCanvasEvents(canvas) {
                 // hasControls: true,
                 // selectable: true,
                 // hasBorder: true,
+                strokeWidth: 3,
+                borderColor: 'green',
                 transparentCorners: false
             });
             canvas.add(rect);
             canvas.requestRenderAll();
+        } else if (currentMode == modes.draw) {
+            canvas.isDrawingMode = true;
         }
     });
 
@@ -109,8 +162,8 @@ function initCanvasEvents(canvas) {
         canvas.renderAll();
         if (currentMode === modes.rect) {
             rect.setCoords();
-            currentMode = '';
         }
+        currentMode = '';
     })
 
 }
